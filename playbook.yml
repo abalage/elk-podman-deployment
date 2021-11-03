@@ -1,0 +1,49 @@
+---
+- hosts: all
+  remote_user: root
+  become: yes
+  become_method: sudo
+  collections:
+    - abalage.elasticstack_podman
+
+- name: Deploy Elasticsearch hosts
+  hosts: elastic_hosts
+  roles:
+    - name: abalage.elasticstack_podman.elasticsearch
+      tags:
+        - elasticsearch
+        - elk
+
+- name: Deploy Kibana hosts
+  hosts: kibana_hosts
+  roles:
+    - name: abalage.elasticstack_podman.kibana
+      tags:
+        - kibana
+        - elk
+
+- name: Deploy Filebeat hosts
+  hosts: filebeat_hosts
+  roles:
+    - name: abalage.elasticstack_podman.filebeat
+      tags:
+        - filebeat
+        - elk
+        - beats
+
+- name: Deploy Metricbeat hosts
+  hosts: metricbeat_hosts
+  roles:
+    - name: abalage.elasticstack_podman.metricbeat
+      tags:
+        - metricbeat
+        - elk
+        - beats
+
+- name: Deploy Logstash hosts
+  hosts: logstash_hosts
+  roles:
+    - name: abalage.elasticstack_podman.logstash
+      tags:
+        - logstash
+        - elk
