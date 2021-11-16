@@ -3,5 +3,4 @@ collections:
   - name: containers.podman
   - name: community.general
   - name: abalage.elasticstack_podman
-    source: git@github.com:abalage/ansible_collection_elasticstack_podman.git
 #    source: git+https://github.com/abalage/ansible_collection_elasticstack_podman.git
