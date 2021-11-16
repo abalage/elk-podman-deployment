@@ -1,6 +1,6 @@
 ---
 - hosts: all
-  remote_user: root
+  remote_user: "{{ansible_remote_user}}"
   become: yes
   become_method: sudo
   collections:
@@ -8,6 +8,8 @@
 
 - name: Deploy Elasticsearch hosts
   hosts: elastic_hosts
+  become: yes
+  become_method: sudo
   roles:
     - name: abalage.elasticstack_podman.elasticsearch
       tags:
@@ -16,6 +18,8 @@
 
 - name: Deploy Kibana hosts
   hosts: kibana_hosts
+  become: yes
+  become_method: sudo
   roles:
     - name: abalage.elasticstack_podman.kibana
       tags:
@@ -24,6 +28,8 @@
 
 - name: Deploy Filebeat hosts
   hosts: filebeat_hosts
+  become: yes
+  become_method: sudo
   roles:
     - name: abalage.elasticstack_podman.filebeat
       tags:
@@ -33,6 +39,8 @@
 
 - name: Deploy Metricbeat hosts
   hosts: metricbeat_hosts
+  become: yes
+  become_method: sudo
   roles:
     - name: abalage.elasticstack_podman.metricbeat
       tags:
@@ -42,6 +50,8 @@
 
 - name: Deploy Logstash hosts
   hosts: logstash_hosts
+  become: yes
+  become_method: sudo
   roles:
     - name: abalage.elasticstack_podman.logstash
       tags:
